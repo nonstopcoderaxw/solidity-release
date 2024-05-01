@@ -5,7 +5,7 @@ const {
 } = require("@nomicfoundation/hardhat-toolbox/network-helpers");
 
 describe("Counter contract", function () {
-  async function CounterLockFixture() {
+  async function setup() {
     const counter = await ethers.deployContract("Counter");
     await counter.setNumber(0);
 
@@ -13,7 +13,7 @@ describe("Counter contract", function () {
   }
 
   it("Should increment the number correctly", async function () {
-    const { counter } = await loadFixture(CounterLockFixture);
+    const { counter } = await loadFixture(setup);
     await counter.increment();
     expect(await counter.number()).to.equal(1);
   });

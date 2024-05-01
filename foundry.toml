@@ -3,6 +3,10 @@ src = "src"
 out = "out"
 libs = ["lib"]
 
+remappings = [
+    "@openzeppelin/contracts=node_modules/@openzeppelin/contracts/"
+]
+
 [default]
 solc = "0.8.24"
 evm_version = "cancun"
