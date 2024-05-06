@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Volumes/t7/mac/gitProjects/solidity-release/src/0.8.24/TransietStorageReentrancyGuard.sol": {
-      "lastModificationDate": 1714353120267,
-      "contentHash": "07f035cfb548dda9b9e3f7952d7636d0",
+      "lastModificationDate": 1714614256645,
+      "contentHash": "abd57c5ab5f0f9a3a9652887993d829e",
       "sourceName": "src/0.8.24/TransietStorageReentrancyGuard.sol",
       "solcConfig": {
         "version": "0.8.24",
@@ -30,8 +30,12 @@
         }
       },
       "imports": [],
-      "versionPragmas": [],
-      "artifacts": []
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "Generosity"
+      ]
     },
     "/Volumes/t7/mac/gitProjects/solidity-release/src/Counter.sol": {
       "lastModificationDate": 1713741772851,
@@ -1172,6 +1176,150 @@
       ],
       "artifacts": [
         "SelfDestructOnCancun"
+      ]
+    },
+    "/Volumes/t7/mac/gitProjects/solidity-release/src/solidity-by-example/applications/EtherWallet.sol": {
+      "lastModificationDate": 1714615401010,
+      "contentHash": "7d8322e73ee42b677811881ea4a3622b",
+      "sourceName": "src/solidity-by-example/applications/EtherWallet.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "cancun",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.24"
+      ],
+      "artifacts": [
+        "EtherWallet"
+      ]
+    },
+    "/Volumes/t7/mac/gitProjects/solidity-release/src/solidity-by-example/hacks/ERC4626_attack/ERC4626_v4_8.sol": {
+      "lastModificationDate": 1714544062268,
+      "contentHash": "030e6d4dd3381d76e6b0db742b754779",
+      "sourceName": "src/solidity-by-example/hacks/ERC4626_attack/ERC4626_v4_8.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "cancun",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.1",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Address",
+        "Context",
+        "ERC20",
+        "ERC4626",
+        "IERC20",
+        "IERC20Metadata",
+        "IERC20Permit",
+        "IERC4626",
+        "Math",
+        "SafeERC20"
+      ]
+    },
+    "/Volumes/t7/mac/gitProjects/solidity-release/src/solidity-by-example/hacks/ERC4626_attack/ERC4626_v4_9.sol": {
+      "lastModificationDate": 1714544145553,
+      "contentHash": "cc6fcdab3d33758fa42e4e04311a3b7e",
+      "sourceName": "src/solidity-by-example/hacks/ERC4626_attack/ERC4626_v4_9.sol",
+      "solcConfig": {
+        "version": "0.8.24",
+        "settings": {
+          "evmVersion": "cancun",
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.1",
+        "^0.8.0",
+        "^0.8.0",
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Address",
+        "Context",
+        "ERC20",
+        "ERC4626",
+        "IERC20",
+        "IERC20Metadata",
+        "IERC20Permit",
+        "IERC4626",
+        "Math",
+        "SafeERC20"
       ]
     }
   }

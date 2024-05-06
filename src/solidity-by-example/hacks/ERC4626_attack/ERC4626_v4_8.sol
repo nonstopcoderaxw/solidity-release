@@ -80,13 +80,8 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) external returns (bool);
+    function transferFrom(address from, address to, uint256 amount) external returns (bool);
 }
-
 
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol
 
@@ -117,14 +112,12 @@ interface IERC20Metadata is IERC20 {
     function decimals() external view returns (uint8);
 }
 
-
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/interfaces/IERC4626.sol
 
 // Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.8.0) (interfaces/IERC4626.sol)
 
 pragma solidity ^0.8.0;
-
 
 /**
  * @dev Interface of the ERC4626 "Tokenized Vault Standard", as defined in
@@ -136,11 +129,7 @@ interface IERC4626 is IERC20, IERC20Metadata {
     event Deposit(address indexed sender, address indexed owner, uint256 assets, uint256 shares);
 
     event Withdraw(
-        address indexed sender,
-        address indexed receiver,
-        address indexed owner,
-        uint256 assets,
-        uint256 shares
+        address indexed sender, address indexed receiver, address indexed owner, uint256 assets, uint256 shares
     );
 
     /**
@@ -307,11 +296,7 @@ interface IERC4626 is IERC20, IERC20Metadata {
      * Note that some implementations will require pre-requesting to the Vault before a withdrawal may be performed.
      * Those methods should be performed separately.
      */
-    function withdraw(
-        uint256 assets,
-        address receiver,
-        address owner
-    ) external returns (uint256 shares);
+    function withdraw(uint256 assets, address receiver, address owner) external returns (uint256 shares);
 
     /**
      * @dev Returns the maximum amount of Vault shares that can be redeemed from the owner balance in the Vault,
@@ -352,13 +337,8 @@ interface IERC4626 is IERC20, IERC20Metadata {
      * NOTE: some implementations will require pre-requesting to the Vault before a withdrawal may be performed.
      * Those methods should be performed separately.
      */
-    function redeem(
-        uint256 shares,
-        address receiver,
-        address owner
-    ) external returns (uint256 assets);
+    function redeem(uint256 shares, address receiver, address owner) external returns (uint256 assets);
 }
-
 
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/utils/Context.sol
 
@@ -387,15 +367,12 @@ abstract contract Context {
     }
 }
 
-
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/token/ERC20/ERC20.sol
 
 // Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.8.0) (token/ERC20/ERC20.sol)
 
 pragma solidity ^0.8.0;
-
-
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -545,11 +522,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - the caller must have allowance for ``from``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 amount
-    ) public virtual override returns (bool) {
+    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
         address spender = _msgSender();
         _spendAllowance(from, spender, amount);
         _transfer(from, to, amount);
@@ -613,11 +586,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `to` cannot be the zero address.
      * - `from` must have a balance of at least `amount`.
      */
-    function _transfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {
+    function _transfer(address from, address to, uint256 amount) internal virtual {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
 
@@ -637,7 +606,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
         _afterTokenTransfer(from, to, amount);
     }
 
-    /** @dev Creates `amount` tokens and assigns them to `account`, increasing
+    /**
+     * @dev Creates `amount` tokens and assigns them to `account`, increasing
      * the total supply.
      *
      * Emits a {Transfer} event with `from` set to the zero address.
@@ -703,11 +673,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `owner` cannot be the zero address.
      * - `spender` cannot be the zero address.
      */
-    function _approve(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
+    function _approve(address owner, address spender, uint256 amount) internal virtual {
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
 
@@ -723,11 +689,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * Might emit an {Approval} event.
      */
-    function _spendAllowance(
-        address owner,
-        address spender,
-        uint256 amount
-    ) internal virtual {
+    function _spendAllowance(address owner, address spender, uint256 amount) internal virtual {
         uint256 currentAllowance = allowance(owner, spender);
         if (currentAllowance != type(uint256).max) {
             require(currentAllowance >= amount, "ERC20: insufficient allowance");
@@ -751,11 +713,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _beforeTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
+    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual {}
 
     /**
      * @dev Hook that is called after any transfer of tokens. This includes
@@ -771,13 +729,8 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _afterTokenTransfer(
-        address from,
-        address to,
-        uint256 amount
-    ) internal virtual {}
+    function _afterTokenTransfer(address from, address to, uint256 amount) internal virtual {}
 }
-
 
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/token/ERC20/extensions/draft-IERC20Permit.sol
 
@@ -816,15 +769,8 @@ interface IERC20Permit {
      * https://eips.ethereum.org/EIPS/eip-2612#specification[relevant EIP
      * section].
      */
-    function permit(
-        address owner,
-        address spender,
-        uint256 value,
-        uint256 deadline,
-        uint8 v,
-        bytes32 r,
-        bytes32 s
-    ) external;
+    function permit(address owner, address spender, uint256 value, uint256 deadline, uint8 v, bytes32 r, bytes32 s)
+        external;
 
     /**
      * @dev Returns the current nonce for `owner`. This value must be
@@ -841,7 +787,6 @@ interface IERC20Permit {
     // solhint-disable-next-line func-name-mixedcase
     function DOMAIN_SEPARATOR() external view returns (bytes32);
 }
-
 
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/utils/Address.sol
 
@@ -907,7 +852,7 @@ library Address {
     function sendValue(address payable recipient, uint256 amount) internal {
         require(address(this).balance >= amount, "Address: insufficient balance");
 
-        (bool success, ) = recipient.call{value: amount}("");
+        (bool success,) = recipient.call{value: amount}("");
         require(success, "Address: unable to send value, recipient may have reverted");
     }
 
@@ -939,11 +884,10 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
+    function functionCall(address target, bytes memory data, string memory errorMessage)
+        internal
+        returns (bytes memory)
+    {
         return functionCallWithValue(target, data, 0, errorMessage);
     }
 
@@ -958,11 +902,7 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 value
-    ) internal returns (bytes memory) {
+    function functionCallWithValue(address target, bytes memory data, uint256 value) internal returns (bytes memory) {
         return functionCallWithValue(target, data, value, "Address: low-level call with value failed");
     }
 
@@ -972,12 +912,10 @@ library Address {
      *
      * _Available since v3.1._
      */
-    function functionCallWithValue(
-        address target,
-        bytes memory data,
-        uint256 value,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
+    function functionCallWithValue(address target, bytes memory data, uint256 value, string memory errorMessage)
+        internal
+        returns (bytes memory)
+    {
         require(address(this).balance >= value, "Address: insufficient balance for call");
         (bool success, bytes memory returndata) = target.call{value: value}(data);
         return verifyCallResultFromTarget(target, success, returndata, errorMessage);
@@ -999,11 +937,11 @@ library Address {
      *
      * _Available since v3.3._
      */
-    function functionStaticCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal view returns (bytes memory) {
+    function functionStaticCall(address target, bytes memory data, string memory errorMessage)
+        internal
+        view
+        returns (bytes memory)
+    {
         (bool success, bytes memory returndata) = target.staticcall(data);
         return verifyCallResultFromTarget(target, success, returndata, errorMessage);
     }
@@ -1024,11 +962,10 @@ library Address {
      *
      * _Available since v3.4._
      */
-    function functionDelegateCall(
-        address target,
-        bytes memory data,
-        string memory errorMessage
-    ) internal returns (bytes memory) {
+    function functionDelegateCall(address target, bytes memory data, string memory errorMessage)
+        internal
+        returns (bytes memory)
+    {
         (bool success, bytes memory returndata) = target.delegatecall(data);
         return verifyCallResultFromTarget(target, success, returndata, errorMessage);
     }
@@ -1063,11 +1000,11 @@ library Address {
      *
      * _Available since v4.3._
      */
-    function verifyCallResult(
-        bool success,
-        bytes memory returndata,
-        string memory errorMessage
-    ) internal pure returns (bytes memory) {
+    function verifyCallResult(bool success, bytes memory returndata, string memory errorMessage)
+        internal
+        pure
+        returns (bytes memory)
+    {
         if (success) {
             return returndata;
         } else {
@@ -1090,15 +1027,12 @@ library Address {
     }
 }
 
-
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol
 
 // Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.8.0) (token/ERC20/utils/SafeERC20.sol)
 
 pragma solidity ^0.8.0;
-
-
 
 /**
  * @title SafeERC20
@@ -1112,20 +1046,11 @@ pragma solidity ^0.8.0;
 library SafeERC20 {
     using Address for address;
 
-    function safeTransfer(
-        IERC20 token,
-        address to,
-        uint256 value
-    ) internal {
+    function safeTransfer(IERC20 token, address to, uint256 value) internal {
         _callOptionalReturn(token, abi.encodeWithSelector(token.transfer.selector, to, value));
     }
 
-    function safeTransferFrom(
-        IERC20 token,
-        address from,
-        address to,
-        uint256 value
-    ) internal {
+    function safeTransferFrom(IERC20 token, address from, address to, uint256 value) internal {
         _callOptionalReturn(token, abi.encodeWithSelector(token.transferFrom.selector, from, to, value));
     }
 
@@ -1136,11 +1061,7 @@ library SafeERC20 {
      * Whenever possible, use {safeIncreaseAllowance} and
      * {safeDecreaseAllowance} instead.
      */
-    function safeApprove(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function safeApprove(IERC20 token, address spender, uint256 value) internal {
         // safeApprove should only be called when setting an initial allowance,
         // or when resetting it to zero. To increase and decrease it, use
         // 'safeIncreaseAllowance' and 'safeDecreaseAllowance'
@@ -1151,20 +1072,12 @@ library SafeERC20 {
         _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, value));
     }
 
-    function safeIncreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function safeIncreaseAllowance(IERC20 token, address spender, uint256 value) internal {
         uint256 newAllowance = token.allowance(address(this), spender) + value;
         _callOptionalReturn(token, abi.encodeWithSelector(token.approve.selector, spender, newAllowance));
     }
 
-    function safeDecreaseAllowance(
-        IERC20 token,
-        address spender,
-        uint256 value
-    ) internal {
+    function safeDecreaseAllowance(IERC20 token, address spender, uint256 value) internal {
         unchecked {
             uint256 oldAllowance = token.allowance(address(this), spender);
             require(oldAllowance >= value, "SafeERC20: decreased allowance below zero");
@@ -1208,7 +1121,6 @@ library SafeERC20 {
     }
 }
 
-
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/utils/math/Math.sol
 
 // Original license: SPDX_License_Identifier: MIT
@@ -1224,6 +1136,7 @@ library Math {
         Down, // Toward negative infinity
         Up, // Toward infinity
         Zero // Toward zero
+
     }
 
     /**
@@ -1265,11 +1178,7 @@ library Math {
      * @dev Original credit to Remco Bloemen under MIT license (https://xn--2-umb.com/21/muldiv)
      * with further edits by Uniswap Labs also under MIT license.
      */
-    function mulDiv(
-        uint256 x,
-        uint256 y,
-        uint256 denominator
-    ) internal pure returns (uint256 result) {
+    function mulDiv(uint256 x, uint256 y, uint256 denominator) internal pure returns (uint256 result) {
         unchecked {
             // 512-bit multiply [prod1 prod0] = x * y. Compute the product mod 2^256 and mod 2^256 - 1, then use
             // use the Chinese Remainder Theorem to reconstruct the 512 bit result. The result is stored in two 256
@@ -1350,12 +1259,7 @@ library Math {
     /**
      * @notice Calculates x * y / denominator with full precision, following the selected rounding direction.
      */
-    function mulDiv(
-        uint256 x,
-        uint256 y,
-        uint256 denominator,
-        Rounding rounding
-    ) internal pure returns (uint256) {
+    function mulDiv(uint256 x, uint256 y, uint256 denominator, Rounding rounding) internal pure returns (uint256) {
         uint256 result = mulDiv(x, y, denominator);
         if (rounding == Rounding.Up && mulmod(x, y, denominator) > 0) {
             result += 1;
@@ -1471,31 +1375,31 @@ library Math {
     function log10(uint256 value) internal pure returns (uint256) {
         uint256 result = 0;
         unchecked {
-            if (value >= 10**64) {
-                value /= 10**64;
+            if (value >= 10 ** 64) {
+                value /= 10 ** 64;
                 result += 64;
             }
-            if (value >= 10**32) {
-                value /= 10**32;
+            if (value >= 10 ** 32) {
+                value /= 10 ** 32;
                 result += 32;
             }
-            if (value >= 10**16) {
-                value /= 10**16;
+            if (value >= 10 ** 16) {
+                value /= 10 ** 16;
                 result += 16;
             }
-            if (value >= 10**8) {
-                value /= 10**8;
+            if (value >= 10 ** 8) {
+                value /= 10 ** 8;
                 result += 8;
             }
-            if (value >= 10**4) {
-                value /= 10**4;
+            if (value >= 10 ** 4) {
+                value /= 10 ** 4;
                 result += 4;
             }
-            if (value >= 10**2) {
-                value /= 10**2;
+            if (value >= 10 ** 2) {
+                value /= 10 ** 2;
                 result += 2;
             }
-            if (value >= 10**1) {
+            if (value >= 10 ** 1) {
                 result += 1;
             }
         }
@@ -1509,7 +1413,7 @@ library Math {
     function log10(uint256 value, Rounding rounding) internal pure returns (uint256) {
         unchecked {
             uint256 result = log10(value);
-            return result + (rounding == Rounding.Up && 10**result < value ? 1 : 0);
+            return result + (rounding == Rounding.Up && 10 ** result < value ? 1 : 0);
         }
     }
 
@@ -1557,16 +1461,12 @@ library Math {
     }
 }
 
-
 // File src/solidity-by-example/hacks/ERC4626_attack/@openzeppelin/contracts/token/ERC20/extensions/ERC4626.sol
 
 // Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.8.1) (token/ERC20/extensions/ERC4626.sol)
 
 pragma solidity ^0.8.0;
-
-
-
 
 /**
  * @dev Implementation of the ERC4626 "Tokenized Vault Standard" as defined in
@@ -1606,9 +1506,8 @@ abstract contract ERC4626 is ERC20, IERC4626 {
      * @dev Attempts to fetch the asset decimals. A return value of false indicates that the attempt failed in some way.
      */
     function _tryGetAssetDecimals(IERC20 asset_) private view returns (bool, uint8) {
-        (bool success, bytes memory encodedDecimals) = address(asset_).staticcall(
-            abi.encodeWithSelector(IERC20Metadata.decimals.selector)
-        );
+        (bool success, bytes memory encodedDecimals) =
+            address(asset_).staticcall(abi.encodeWithSelector(IERC20Metadata.decimals.selector));
         if (success && encodedDecimals.length >= 32) {
             uint256 returnedDecimals = abi.decode(encodedDecimals, (uint256));
             if (returnedDecimals <= type(uint8).max) {
@@ -1628,67 +1527,93 @@ abstract contract ERC4626 is ERC20, IERC4626 {
         return _decimals;
     }
 
-    /** @dev See {IERC4626-asset}. */
+    /**
+     * @dev See {IERC4626-asset}.
+     */
     function asset() public view virtual override returns (address) {
         return address(_asset);
     }
 
-    /** @dev See {IERC4626-totalAssets}. */
+    /**
+     * @dev See {IERC4626-totalAssets}.
+     */
     function totalAssets() public view virtual override returns (uint256) {
         return _asset.balanceOf(address(this));
     }
 
-    /** @dev See {IERC4626-convertToShares}. */
+    /**
+     * @dev See {IERC4626-convertToShares}.
+     */
     function convertToShares(uint256 assets) public view virtual override returns (uint256 shares) {
         return _convertToShares(assets, Math.Rounding.Down);
     }
 
-    /** @dev See {IERC4626-convertToAssets}. */
+    /**
+     * @dev See {IERC4626-convertToAssets}.
+     */
     function convertToAssets(uint256 shares) public view virtual override returns (uint256 assets) {
         return _convertToAssets(shares, Math.Rounding.Down);
     }
 
-    /** @dev See {IERC4626-maxDeposit}. */
+    /**
+     * @dev See {IERC4626-maxDeposit}.
+     */
     function maxDeposit(address) public view virtual override returns (uint256) {
         return _isVaultCollateralized() ? type(uint256).max : 0;
     }
 
-    /** @dev See {IERC4626-maxMint}. */
+    /**
+     * @dev See {IERC4626-maxMint}.
+     */
     function maxMint(address) public view virtual override returns (uint256) {
         return type(uint256).max;
     }
 
-    /** @dev See {IERC4626-maxWithdraw}. */
+    /**
+     * @dev See {IERC4626-maxWithdraw}.
+     */
     function maxWithdraw(address owner) public view virtual override returns (uint256) {
         return _convertToAssets(balanceOf(owner), Math.Rounding.Down);
     }
 
-    /** @dev See {IERC4626-maxRedeem}. */
+    /**
+     * @dev See {IERC4626-maxRedeem}.
+     */
     function maxRedeem(address owner) public view virtual override returns (uint256) {
         return balanceOf(owner);
     }
 
-    /** @dev See {IERC4626-previewDeposit}. */
+    /**
+     * @dev See {IERC4626-previewDeposit}.
+     */
     function previewDeposit(uint256 assets) public view virtual override returns (uint256) {
         return _convertToShares(assets, Math.Rounding.Down);
     }
 
-    /** @dev See {IERC4626-previewMint}. */
+    /**
+     * @dev See {IERC4626-previewMint}.
+     */
     function previewMint(uint256 shares) public view virtual override returns (uint256) {
         return _convertToAssets(shares, Math.Rounding.Up);
     }
 
-    /** @dev See {IERC4626-previewWithdraw}. */
+    /**
+     * @dev See {IERC4626-previewWithdraw}.
+     */
     function previewWithdraw(uint256 assets) public view virtual override returns (uint256) {
         return _convertToShares(assets, Math.Rounding.Up);
     }
 
-    /** @dev See {IERC4626-previewRedeem}. */
+    /**
+     * @dev See {IERC4626-previewRedeem}.
+     */
     function previewRedeem(uint256 shares) public view virtual override returns (uint256) {
         return _convertToAssets(shares, Math.Rounding.Down);
     }
 
-    /** @dev See {IERC4626-deposit}. */
+    /**
+     * @dev See {IERC4626-deposit}.
+     */
     function deposit(uint256 assets, address receiver) public virtual override returns (uint256) {
         require(assets <= maxDeposit(receiver), "ERC4626: deposit more than max");
 
@@ -1698,7 +1623,8 @@ abstract contract ERC4626 is ERC20, IERC4626 {
         return shares;
     }
 
-    /** @dev See {IERC4626-mint}.
+    /**
+     * @dev See {IERC4626-mint}.
      *
      * As opposed to {deposit}, minting is allowed even if the vault is in a state where the price of a share is zero.
      * In this case, the shares will be minted without requiring any assets to be deposited.
@@ -1712,12 +1638,10 @@ abstract contract ERC4626 is ERC20, IERC4626 {
         return assets;
     }
 
-    /** @dev See {IERC4626-withdraw}. */
-    function withdraw(
-        uint256 assets,
-        address receiver,
-        address owner
-    ) public virtual override returns (uint256) {
+    /**
+     * @dev See {IERC4626-withdraw}.
+     */
+    function withdraw(uint256 assets, address receiver, address owner) public virtual override returns (uint256) {
         require(assets <= maxWithdraw(owner), "ERC4626: withdraw more than max");
 
         uint256 shares = previewWithdraw(assets);
@@ -1726,12 +1650,10 @@ abstract contract ERC4626 is ERC20, IERC4626 {
         return shares;
     }
 
-    /** @dev See {IERC4626-redeem}. */
-    function redeem(
-        uint256 shares,
-        address receiver,
-        address owner
-    ) public virtual override returns (uint256) {
+    /**
+     * @dev See {IERC4626-redeem}.
+     */
+    function redeem(uint256 shares, address receiver, address owner) public virtual override returns (uint256) {
         require(shares <= maxRedeem(owner), "ERC4626: redeem more than max");
 
         uint256 assets = previewRedeem(shares);
@@ -1748,10 +1670,9 @@ abstract contract ERC4626 is ERC20, IERC4626 {
      */
     function _convertToShares(uint256 assets, Math.Rounding rounding) internal view virtual returns (uint256 shares) {
         uint256 supply = totalSupply();
-        return
-            (assets == 0 || supply == 0)
-                ? _initialConvertToShares(assets, rounding)
-                : assets.mulDiv(supply, totalAssets(), rounding);
+        return (assets == 0 || supply == 0)
+            ? _initialConvertToShares(assets, rounding)
+            : assets.mulDiv(supply, totalAssets(), rounding);
     }
 
     /**
@@ -1759,10 +1680,12 @@ abstract contract ERC4626 is ERC20, IERC4626 {
      *
      * NOTE: Make sure to keep this function consistent with {_initialConvertToAssets} when overriding it.
      */
-    function _initialConvertToShares(
-        uint256 assets,
-        Math.Rounding /*rounding*/
-    ) internal view virtual returns (uint256 shares) {
+    function _initialConvertToShares(uint256 assets, Math.Rounding /*rounding*/ )
+        internal
+        view
+        virtual
+        returns (uint256 shares)
+    {
         return assets;
     }
 
@@ -1780,22 +1703,19 @@ abstract contract ERC4626 is ERC20, IERC4626 {
      *
      * NOTE: Make sure to keep this function consistent with {_initialConvertToShares} when overriding it.
      */
-    function _initialConvertToAssets(
-        uint256 shares,
-        Math.Rounding /*rounding*/
-    ) internal view virtual returns (uint256 assets) {
+    function _initialConvertToAssets(uint256 shares, Math.Rounding /*rounding*/ )
+        internal
+        view
+        virtual
+        returns (uint256 assets)
+    {
         return shares;
     }
 
     /**
      * @dev Deposit/mint common workflow.
      */
-    function _deposit(
-        address caller,
-        address receiver,
-        uint256 assets,
-        uint256 shares
-    ) internal virtual {
+    function _deposit(address caller, address receiver, uint256 assets, uint256 shares) internal virtual {
         // If _asset is ERC777, `transferFrom` can trigger a reenterancy BEFORE the transfer happens through the
         // `tokensToSend` hook. On the other hand, the `tokenReceived` hook, that is triggered after the transfer,
         // calls the vault, which is assumed not malicious.
@@ -1812,13 +1732,10 @@ abstract contract ERC4626 is ERC20, IERC4626 {
     /**
      * @dev Withdraw/redeem common workflow.
      */
-    function _withdraw(
-        address caller,
-        address receiver,
-        address owner,
-        uint256 assets,
-        uint256 shares
-    ) internal virtual {
+    function _withdraw(address caller, address receiver, address owner, uint256 assets, uint256 shares)
+        internal
+        virtual
+    {
         if (caller != owner) {
             _spendAllowance(owner, caller, shares);
         }
